@@ -6,11 +6,7 @@ export class ConfigService {
   constructor() {
     const result = dotenv.config();
 
-    if (result.error) {
-      this.envConfig = process.env;
-    } else {
-      this.envConfig = result.parsed;
-    }
+    this.envConfig = result.error ? process.env : result.parsed;
   }
 
   public get(key: string): string {
