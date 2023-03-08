@@ -12,7 +12,7 @@ import { Type } from 'class-transformer';
 export class CreateMenuDTO {
   @ApiProperty()
   @IsNotEmpty()
-  restaurant_id: string;
+  restaurant: string;
 
   @ApiProperty()
   @IsString()

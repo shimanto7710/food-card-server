@@ -1,14 +1,15 @@
+import { RestaurantEntity } from './../../restaurant/entity/restaurant.entity';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as MongooseSchema } from 'mongoose';
 
 @Schema({ timestamps: true, collection: 'menus' })
 export class MenuEntity extends Document {
   @Prop({
-    required: true,
     type: MongooseSchema.Types.ObjectId,
-    ref: 'restaurants',
+    ref: 'RestaurantEntity',
+    required: true,
   })
-  restaurant_id: MongooseSchema.Types.ObjectId;
+  restaurant: RestaurantEntity;
 
   @Prop({ required: true, type: String })
   name: string;

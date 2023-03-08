@@ -34,7 +34,7 @@ export class RestaurantService {
   }
 
   public getAllRestaurant() {
-    return this.restaurantModel.find();
+    return this.restaurantModel.find().populate('menus');
   }
 
   public getRestaurantById(id: string | MongooseSchema.Types.ObjectId) {

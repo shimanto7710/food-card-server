@@ -1,3 +1,4 @@
+import { MenuEntity } from './../../menu/entity/menu.entity';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as MongooseSchema } from 'mongoose';
 
@@ -30,8 +31,8 @@ export class RestaurantEntity extends Document {
   @Prop({ default: true })
   is_active: boolean;
 
-  @Prop({ type: [MongooseSchema.Types.ObjectId], ref: 'menus' })
-  menus: MongooseSchema.Types.ObjectId[];
+  @Prop({ type: [{ type: MongooseSchema.Types.ObjectId, ref: 'MenuEntity' }] })
+  menus: MenuEntity[];
 }
 
 export const RestaurantSchema = SchemaFactory.createForClass(RestaurantEntity);

@@ -29,7 +29,7 @@ export class MenuService {
     const newMenu = await menu.save();
 
     await this.restaurantService.updateRestaurantMenu(
-      newMenu.restaurant_id,
+      body.restaurant,
       newMenu._id,
       UpdateRestaurantMenuTypeEnum.INSERT,
     );
@@ -38,17 +38,24 @@ export class MenuService {
   }
 
   public getAllMenu() {
-    return this.menuModel.find();
+    return this.menuModel
+      .find()
+      .populate({ path: 'restaurant', select: '-menus' });
   }
 
   public getAllMenuByRestaurant(
     restaurantId: string | MongooseSchema.Types.ObjectId,
   ) {
-    return this.menuModel.find({ restaurant_id: restaurantId });
+    return this.menuModel
+      .find({ restaurant: restaurantId })
+      .populate({ path: 'restaurant', select: '-menus' });
   }
 
   public getMenuById(id: string | MongooseSchema.Types.ObjectId) {
-    return this.menuModel.findById(id).lean();
+    return this.menuModel
+      .findById(id)
+      .lean()
+      .populate({ path: 'restaurant', select: '-menus' });
   }
 
   public async getMenu(id: string | MongooseSchema.Types.ObjectId) {
@@ -88,7 +95,7 @@ export class MenuService {
     });
 
     await this.restaurantService.updateRestaurantMenu(
-      menu.restaurant_id,
+      menu?.restaurant?._id,
       menu._id,
       UpdateRestaurantMenuTypeEnum.REMOVE,
     );
