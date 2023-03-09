@@ -18,6 +18,9 @@ export class RestaurantResponseDTO extends BaseResponseDTO {
   phone_number: string;
 
   @ApiResponseProperty()
+  image: string;
+
+  @ApiResponseProperty()
   qr_code: string;
 
   @ApiResponseProperty()

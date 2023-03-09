@@ -1,22 +1,25 @@
-import { ApiPropertyOptional } from '@nestjs/swagger';
+import { ApiResponseProperty } from '@nestjs/swagger';
 import { BaseResponseDTO } from './../../shared/dto/base-response.dto';
 
 export class MenuResponseDTO extends BaseResponseDTO {
-  @ApiPropertyOptional()
+  @ApiResponseProperty()
   name: string;
 
-  @ApiPropertyOptional()
+  @ApiResponseProperty()
   price: number;
 
-  @ApiPropertyOptional()
+  @ApiResponseProperty()
   quantity: number;
 
-  @ApiPropertyOptional()
+  @ApiResponseProperty()
   type: string;
 
-  @ApiPropertyOptional()
+  @ApiResponseProperty()
+  image: string;
+
+  @ApiResponseProperty()
   opening_time: Date;
 
-  @ApiPropertyOptional()
+  @ApiResponseProperty()
   closing_time: Date;
 }
